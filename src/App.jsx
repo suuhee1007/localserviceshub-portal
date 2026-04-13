@@ -21,6 +21,10 @@ const SERVICE_TYPES = [
   { key: 'laundry', label: 'Laundry' }
 ];
 
+const US_STATES = [
+  'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'
+];
+
 function App() {
   return (
     <BrowserRouter>
@@ -83,6 +87,8 @@ function ServiceTypePage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [stateFilter, setStateFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState('');
 
   const typeLabel = SERVICE_TYPES.find((item) => item.key === serviceType)?.label || serviceType;
 
@@ -90,7 +96,16 @@ function ServiceTypePage() {
     setLoading(true);
     setError(null);
 
-    fetch(`${API_BASE}/services?type=${encodeURIComponent(serviceType)}`)
+    const params = new URLSearchParams();
+    params.set('type', serviceType);
+    if (stateFilter) {
+      params.set('state', stateFilter);
+    }
+    if (cityFilter) {
+      params.set('city', cityFilter);
+    }
+
+    fetch(`${API_BASE}/services?${params.toString()}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Unable to load services.');
@@ -102,12 +117,33 @@ function ServiceTypePage() {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [serviceType]);
+  }, [serviceType, stateFilter, cityFilter]);
 
   return (
     <section className="page page-list">
       <h2>{typeLabel}</h2>
-      <p>Local service providers in the selected category.</p>
+      <p>Search local providers by state and city within this category.</p>
+
+      <div className="search-filters">
+        <div className="filter-field">
+          <label>State</label>
+          <select value={stateFilter} onChange={(event) => setStateFilter(event.target.value)}>
+            <option value="">All states</option>
+            {US_STATES.map((stateName) => (
+              <option key={stateName} value={stateName}>{stateName}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="filter-field">
+          <label>City</label>
+          <input
+            value={cityFilter}
+            onChange={(event) => setCityFilter(event.target.value)}
+            placeholder="Enter city"
+          />
+        </div>
+      </div>
 
       {loading && <div className="status-message">Loading services...</div>}
       {error && <div className="status-message status-error">{error}</div>}
@@ -119,7 +155,7 @@ function ServiceTypePage() {
         {services.map((item) => (
           <NavLink key={item.id} to={`/service/${item.id}`} className="service-item">
             <div className="service-item-title">{item.serviceName}</div>
-            <div className="service-item-meta">{item.city} · {item.serviceType}</div>
+            <div className="service-item-meta">{item.city}, {item.state} · {item.serviceType}</div>
           </NavLink>
         ))}
       </div>
@@ -165,6 +201,7 @@ function ServiceDetailsPage() {
           <p>{service.serviceDescription}</p>
           <div className="details-meta">
             <div><strong>City</strong>: {service.city}</div>
+            <div><strong>State</strong>: {service.state}</div>
             <div><strong>ZIP</strong>: {service.zipCode}</div>
             <div><strong>Address</strong>: {service.address}</div>
           </div>
@@ -181,6 +218,7 @@ function RegisterServicePage() {
     serviceDescription: '',
     serviceType: SERVICE_TYPES[0].key,
     city: '',
+    state: US_STATES[0],
     zipCode: '',
     address: ''
   });
@@ -215,6 +253,7 @@ function RegisterServicePage() {
         serviceDescription: '',
         serviceType: SERVICE_TYPES[0].key,
         city: '',
+        state: US_STATES[0],
         zipCode: '',
         address: ''
       });
@@ -266,6 +305,15 @@ function RegisterServicePage() {
         <label>
           City
           <input name="city" value={form.city} onChange={handleChange} required />
+        </label>
+
+        <label>
+          State
+          <select name="state" value={form.state} onChange={handleChange} required>
+            {US_STATES.map((stateName) => (
+              <option key={stateName} value={stateName}>{stateName}</option>
+            ))}
+          </select>
         </label>
 
         <label>
