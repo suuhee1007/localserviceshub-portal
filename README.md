@@ -17,4 +17,4 @@ React frontend for the LocalServicesHub application.
    npm run dev
    ```
 
-The portal will be available at `http://localhost:3000` and proxies API calls to `http://localhost:8080/api`.
+The portal will be available at `http://localhost:3000` and sends API calls to `https://localserviceshub-services.onrender.com/api`.

@@ -8,7 +8,7 @@ import {
   useParams
 } from 'react-router-dom';
 
-const API_BASE = '/api';
+const API_BASE = 'https://localserviceshub-services.onrender.com/api';
 const SERVICE_TYPES = [
   { key: 'roomsharing', label: 'Room Sharing' },
   { key: 'beautyservice', label: 'Beauty Services' },
