@@ -18,7 +18,9 @@ const SERVICE_TYPES = [
   { key: 'plumbers', label: 'Plumbers' },
   { key: 'electrician', label: 'Electricians' },
   { key: 'cleaning', label: 'Cleaning Services' },
-  { key: 'laundry', label: 'Laundry' }
+  { key: 'laundry', label: 'Laundry' },
+  { key: 'insurance', label: 'Insurance' },
+  { key: 'taxfiling', label: 'Tax Filing' }
 ];
 
 const US_STATES = [
