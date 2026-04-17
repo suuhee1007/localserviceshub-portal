@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -215,6 +215,7 @@ function ServiceDetailsPage() {
 
 function RegisterServicePage() {
   const navigate = useNavigate();
+  const surveyWindowRef = useRef(null);
   const [form, setForm] = useState({
     serviceName: '',
     serviceDescription: '',
@@ -226,6 +227,22 @@ function RegisterServicePage() {
   });
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const openQualtricsSurvey = () => {
+    const url = 'https://qualtricsxmj67k6986x.qualtrics.com/jfe/form/SV_4ZvE1LZ6B4TkMWW';
+    const features = 'width=900,height=700,top=100,left=100,resizable=yes,scrollbars=yes';
+    const popup = window.open(url, 'serviceRegistrationSurvey', features);
+
+    if (popup) {
+      popup.focus();
+      surveyWindowRef.current = popup;
+    } else {
+      setStatus({
+        type: 'error',
+        message: 'Please allow pop-ups to view the follow-up survey.'
+      });
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -250,6 +267,7 @@ function RegisterServicePage() {
       }
 
       setStatus({ type: 'success', message: 'Service registered successfully.' });
+      openQualtricsSurvey();
       setForm({
         serviceName: '',
         serviceDescription: '',
