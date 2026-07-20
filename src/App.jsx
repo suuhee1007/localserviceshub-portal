@@ -57,13 +57,23 @@ function App() {
 function HomePage() {
   return (
     <section className="page page-home">
-      <div className="hero-card">
-        <h1>DesisLocalServicesHub</h1>
-        <p>
-          DesisLocalServicesHub is your neighborhood guide to trusted services for
-          the desi community. Discover room sharing, personal care, food delivery,
-          home repairs, event planners, and more—all in one place.
-        </p>
+      <div className="hero-banner">
+        <div className="hero-card">
+          <div className="hero-badge">Arizona-inspired local discovery</div>
+          <h1>Discover trusted local services with a warm, modern feel.</h1>
+          <p>
+            Explore room sharing, personal care, food delivery, home repairs,
+            event planning, and more in one beautifully curated experience.
+          </p>
+          <div className="hero-actions">
+            <NavLink to="/register" className="primary-button">
+              Register Your Service
+            </NavLink>
+            <NavLink to="/type/beautyservice" className="primary-button">
+              Explore Nearby Services
+            </NavLink>
+          </div>
+        </div>
       </div>
 
       <div className="section">
