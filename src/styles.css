@@ -79,15 +79,20 @@ a {
 }
 
 .hero-banner {
-  background:
-    linear-gradient(120deg, rgba(10, 18, 40, 0.84) 0%, rgba(29, 78, 216, 0.66) 40%, rgba(188, 53, 41, 0.45) 100%),
-    url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1600&q=80');
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  overflow: hidden;
   border-radius: 24px;
   padding: 32px;
   margin-bottom: 24px;
   color: white;
+  background:
+    linear-gradient(120deg, rgba(10, 18, 40, 0.86) 0%, rgba(29, 78, 216, 0.62) 42%, rgba(188, 53, 41, 0.46) 100%),
+    url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80'),
+    url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover, cover, cover;
+  background-position: center, center left, center right;
+  background-blend-mode: normal, multiply, overlay;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 .hero-card {

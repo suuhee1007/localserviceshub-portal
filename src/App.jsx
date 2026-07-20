@@ -59,11 +59,11 @@ function HomePage() {
     <section className="page page-home">
       <div className="hero-banner">
         <div className="hero-card">
-          <div className="hero-badge">Arizona-inspired local discovery</div>
-          <h1>Discover trusted local services with a warm, modern feel.</h1>
+          <div className="hero-badge">USA Desis community connection</div>
+          <h1>Bringing trusted local support to the USA and desi community.</h1>
           <p>
-            Explore room sharing, personal care, food delivery, home repairs,
-            event planning, and more in one beautifully curated experience.
+            From neighborhood care to community connections, discover services shaped by
+            American convenience and desi warmth in one beautifully curated experience.
           </p>
           <div className="hero-actions">
             <NavLink to="/register" className="primary-button">
