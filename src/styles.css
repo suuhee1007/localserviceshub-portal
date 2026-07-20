@@ -157,11 +157,10 @@ a {
   display: block;
   padding: 24px;
   border-radius: 20px;
-  background:
-    linear-gradient(135deg, rgba(248, 250, 252, 0.94) 0%, rgba(191, 219, 254, 0.82) 100%),
-    url('https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=900&q=80');
+  background-color: #eef2ff;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border: 1px solid rgba(59, 130, 246, 0.18);
   color: #0f172a;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);

@@ -10,17 +10,17 @@ import {
 
 const API_BASE = 'https://localserviceshub-services.onrender.com/api';
 const SERVICE_TYPES = [
-  { key: 'roomsharing', label: 'Room Sharing' },
-  { key: 'beautyservice', label: 'Beauty Services' },
-  { key: 'foodservice', label: 'Food Services' },
-  { key: 'helpers', label: 'Helpers' },
-  { key: 'eventmanager', label: 'Event Managers' },
-  { key: 'plumbers', label: 'Plumbers' },
-  { key: 'electrician', label: 'Electricians' },
-  { key: 'cleaning', label: 'Cleaning Services' },
-  { key: 'laundry', label: 'Laundry' },
-  { key: 'insurance', label: 'Insurance' },
-  { key: 'taxfiling', label: 'Tax Filing' }
+  { key: 'roomsharing', label: 'Room Sharing', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80' },
+  { key: 'beautyservice', label: 'Beauty Services', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80' },
+  { key: 'foodservice', label: 'Food Services', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80' },
+  { key: 'helpers', label: 'Helpers', image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80' },
+  { key: 'eventmanager', label: 'Event Managers', image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80' },
+  { key: 'plumbers', label: 'Plumbers', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80' },
+  { key: 'electrician', label: 'Electricians', image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80' },
+  { key: 'cleaning', label: 'Cleaning Services', image: 'https://images.unsplash.com/photo-1581572473681-3b7d7b47e9bc?auto=format&fit=crop&w=900&q=80' },
+  { key: 'laundry', label: 'Laundry', image: 'https://images.unsplash.com/photo-1626806787461-1234d8a4e9f6?auto=format&fit=crop&w=900&q=80' },
+  { key: 'insurance', label: 'Insurance', image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80' },
+  { key: 'taxfiling', label: 'Tax Filing', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80' }
 ];
 
 const US_STATES = [
@@ -81,7 +81,14 @@ function HomePage() {
         <p>Select a service category to explore local providers and view full details.</p>
         <div className="service-grid">
           {SERVICE_TYPES.map((type) => (
-            <NavLink key={type.key} to={`/type/${type.key}`} className="service-card">
+            <NavLink
+              key={type.key}
+              to={`/type/${type.key}`}
+              className="service-card"
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(248, 250, 252, 0.94) 0%, rgba(191, 219, 254, 0.82) 100%), url('${type.image}')`
+              }}
+            >
               <div>
                 <strong>{type.label}</strong>
               </div>
