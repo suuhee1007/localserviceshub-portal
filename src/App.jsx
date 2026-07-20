@@ -59,8 +59,8 @@ function HomePage() {
     <section className="page page-home">
       <div className="hero-banner">
         <div className="hero-card">
-          <div className="hero-badge">USA Desis community connection</div>
-          <h1>Bringing trusted local support to the USA and desi community.</h1>
+          <div className="hero-badge">Usa Desis community connection</div>
+          <h1>Bringing trusted local support to the Usa and Desi community.</h1>
           <p>
             From neighborhood care to community connections, discover services shaped by
             American convenience and desi warmth in one beautifully curated experience.
